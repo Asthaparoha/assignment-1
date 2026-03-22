@@ -163,42 +163,42 @@ Filters products based on selected category.
 ### 🔄 Sorting Feature
 Products sorted by price and name.
 
-![Sorting](./screenshots/Sorting filter.png)
+![Sorting](./screenshots/Sorting.png)
 
 ---
 
 ### ⚠️ Low Stock Filter
 Shows products with stock less than 5.
 
-![Low Stock](./screenshots/Low stock check.png)
+![Low Stock](./screenshots/Lowstockcheck.png)
 
 ---
 
 ### ➕ Add Product
 Form used to add a new product.
 
-![Add Product](./screenshots/New Product.png)
+![Add Product](./screenshots/NewProduct.png)
 
 ---
 
 ### ✅ Product Added
 New product appears instantly in list.
 
-![Product Added](./screenshots/New Product Added.png)
+![Product Added](./screenshots/NewProductAdded.png)
 
 ---
 
 ### 🗑️ Delete Product
 Product removed from dashboard.
 
-![Delete](./screenshots/Delete button.png)
+![Delete](./screenshots/Deletebutton.png)
 
 ---
 
 ### ✔️ After Deletion
 Updated product list after deletion.
 
-![Deleted](./screenshots/Product Successfully deleted.png)
+![Deleted](./screenshots/ProductSuccessfullydeleted.png)
 
 
 # ▶️ How to Run the Project
