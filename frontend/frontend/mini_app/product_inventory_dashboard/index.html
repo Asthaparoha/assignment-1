@@ -1,1 +1,185 @@
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Ensures proper scaling on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Inventory Dashboard</title>
+
+<!-- Linking external stylesheet -->
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+<body>
+
+<!-- ===== HEADER SECTION ===== -->
+
+<!-- Displays the main title and short description of the app -->
+
+<header class="header">
+
+```
+<!-- Title + subtitle -->
+<div class="header-content">
+    <h1>📦 Inventory Dashboard</h1>
+    <p class="subtitle">
+        Smart way to manage, track and organize your products
+    </p>
+</div>
+
+<!-- Small info badges just for better UI feel -->
+<div class="header-info">
+    <span>⚡ Fast</span>
+    <span>📊 Analytics</span>
+    <span>💾 Auto Save</span>
+</div>
+```
+
+</header>
+
+<!-- ===== CONTROLS SECTION ===== -->
+
+<!-- Contains search, filter and sorting functionality -->
+
+<section class="controls">
+
+```
+<h2>🔍 Find & Filter Products</h2>
+
+<div class="controls-wrapper">
+
+    <!-- Search input (filters products by name) -->
+    <input type="text" id="searchInput" placeholder="Search products...">
+
+    <!-- Category dropdown (filled dynamically using JS) -->
+    <select id="categorySelect">
+        <option value="all">All Categories</option>
+    </select>
+
+    <!-- Sorting options -->
+    <select id="sortSelect">
+        <option value="">Sort By</option>
+        <option value="low">Price: Low → High</option>
+        <option value="high">Price: High → Low</option>
+        <option value="az">Name A → Z</option>
+        <option value="za">Name Z → A</option>
+    </select>
+
+    <!-- Checkbox to show only low stock items -->
+    <label>
+        <input type="checkbox" id="stockFilter">
+        Low Stock (&lt; 5)
+    </label>
+
+</div>
+```
+
+</section>
+
+<!-- ===== ANALYTICS SECTION ===== -->
+
+<!-- Displays summary information about inventory -->
+
+<section class="analytics">
+
+```
+<!-- Total number of products -->
+<div class="card">
+    <h3>Total Products</h3>
+    <p id="totalProducts">0</p>
+</div>
+
+<!-- Total inventory value (price × stock) -->
+<div class="card">
+    <h3>Total Value</h3>
+    <p>₹<span id="totalValue">0</span></p>
+</div>
+
+<!-- Number of products that are out of stock -->
+<div class="card">
+    <h3>Out of Stock</h3>
+    <p id="outOfStock">0</p>
+</div>
+```
+
+</section>
+
+<!-- ===== LOADING STATE ===== -->
+
+<!-- This is shown while products are being "fetched" -->
+
+<div id="loadingMessage">
+    <p>Loading products...</p>
+</div>
+
+<!-- ===== PRODUCT DISPLAY SECTION ===== -->
+
+<!-- All product cards will be rendered here dynamically -->
+
+<section class="products-section">
+
+```
+<h2>🛒 Product List</h2>
+
+<!-- Message shown when no products match filters -->
+<p id="emptyMessage" style="display: none;">
+    No products found.
+</p>
+
+<!-- Container for dynamically generated product cards -->
+<div id="productList"></div>
+```
+
+</section>
+
+<!-- ===== ADD PRODUCT FORM ===== -->
+
+<!-- Form used to add new products to inventory -->
+
+<section class="form-section">
+
+```
+<h2>➕ Add New Product</h2>
+
+<form id="addForm">
+
+    <!-- Product name input -->
+    <label>Product Name</label>
+    <input type="text" id="productName" required>
+
+    <!-- Product price input -->
+    <label>Price (₹)</label>
+    <input type="number" id="productPrice" required>
+
+    <!-- Stock quantity input -->
+    <label>Stock</label>
+    <input type="number" id="productStock" required>
+
+    <!-- Category selection -->
+    <label>Category</label>
+    <select id="productCategory" required>
+        <option value="">Select Category</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="books">Books</option>
+        <option value="accessories">Accessories</option>
+    </select>
+
+    <!-- Submit button -->
+    <button type="submit">Add Product</button>
+
+</form>
+```
+
+</section>
+
+<!-- Linking JavaScript file -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
