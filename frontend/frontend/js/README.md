@@ -20,32 +20,32 @@ The goal is to process and evaluate student data using pure JavaScript logic wit
 
 ## 📊 Output Screenshots
 
-### 🧮 1. Total Marks & Average
+### 🧮 1. DATABASE
 ![Image1](screenshots/image1.png)
 
 ---
 
-### 📈 2. Continued Output
+### 📈 2. LOGIC FOR TOTAL MARKS AND AVERAGES
 ![Image2](screenshots/image2.png)
 
 ---
 
-### 🏆 3. Subject-wise Toppers
+### 🏆 3. SUBJECT WISE AVERAGE LOGIC AND LOOPS
 ![Image3](screenshots/image3.png)
 
 ---
 
-### 📊 4. Subject-wise Averages
+### 📊 4. TOPPER LOGIC
 ![Image4](screenshots/image4.png)
 
 ---
 
-### 🥇 5. Class Topper
+### 🥇 5. FAIL CONDITION AND LOGIC
 ![Image5](screenshots/image5.png)
 
 ---
 
-### 🎓 6. Grades & Fail Conditions
+### 🎓 6. OUTPUT
 ![Image6](screenshots/image6.png)
 
 ---
