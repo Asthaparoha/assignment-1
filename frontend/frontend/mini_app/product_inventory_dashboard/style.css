@@ -157,6 +157,14 @@ button {
 input, select {
   border: 1px solid #ffc0cb;
 }
+.delete-btn {
+  margin-top: 8px;
+  background: #ff4d6d;
+}
+
+.delete-btn:hover {
+  background: #d90429;
+}
 /* ===== LOADING ===== */
 
 #loadingMessage {
