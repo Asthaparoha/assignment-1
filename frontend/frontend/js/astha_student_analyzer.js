@@ -166,4 +166,8 @@ function getGrade(student) {
 
   return "Fail";
 }
+// -------- PRINT GRADES --------
 
+students.forEach(stu => {
+  console.log(stu.name + " Grade: " + getGrade(stu));
+});
