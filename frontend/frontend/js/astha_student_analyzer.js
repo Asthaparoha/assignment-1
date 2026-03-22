@@ -58,4 +58,9 @@ function getTotalMarks(student) {
 
   return sum;
 }
-
+// -------- AVERAGE --------
+// Average is simply total divided by number of subjects
+function getAverageMarks(student) {
+  const total = getTotalMarks(student);
+  return total / student.marks.length;
+}
