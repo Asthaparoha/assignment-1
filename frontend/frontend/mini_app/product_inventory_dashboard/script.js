@@ -49,3 +49,35 @@ productList.appendChild(card);
 
 });
 }
+// ================== FILTER + SEARCH + SORT ==================
+function applyFilters() {
+
+let filtered = [...products];
+
+const search = document.getElementById("searchInput").value.toLowerCase();
+const category = document.getElementById("categorySelect").value;
+const sort = document.getElementById("sortSelect").value;
+const lowStock = document.getElementById("stockFilter").checked;
+
+if (search) {
+filtered = filtered.filter(p =>
+p.name.toLowerCase().includes(search)
+);
+}
+
+if (category !== "all") {
+filtered = filtered.filter(p => p.category === category);
+}
+
+if (lowStock) {
+filtered = filtered.filter(p => p.stock < 5);
+}
+
+if (sort === "low") filtered.sort((a, b) => a.price - b.price);
+if (sort === "high") filtered.sort((a, b) => b.price - a.price);
+if (sort === "az") filtered.sort((a, b) => a.name.localeCompare(b.name));
+if (sort === "za") filtered.sort((a, b) => b.name.localeCompare(a.name));
+
+renderProducts(filtered);
+}
+
