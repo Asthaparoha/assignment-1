@@ -120,3 +120,19 @@ for (let i = 0; i < subjects.length; i++) {
   const avg = total / students.length;
   console.log("Average " + subjects[i] + ": " + avg);
 }
+/ -------- CLASS TOPPER --------
+
+let highestTotal = 0;
+let classTopper = "";
+
+for (let i = 0; i < students.length; i++) {
+  const total = getTotalMarks(students[i]);
+
+  if (total > highestTotal) {
+    highestTotal = total;
+    classTopper = students[i].name;
+  }
+}
+
+console.log("\nClass Topper: " + classTopper + " with " + highestTotal + " marks");
+
