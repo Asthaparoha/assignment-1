@@ -100,3 +100,23 @@ for (let i = 0; i < subjects.length; i++) {
 
   console.log("Highest in " + subjects[i] + ": " + topper + " (" + highest + ")");
 }
+// -------- SUBJECT-WISE AVERAGE --------
+
+console.log("\n---- SUBJECT AVERAGES ----");
+
+for (let i = 0; i < subjects.length; i++) {
+  let total = 0;
+
+  for (let j = 0; j < students.length; j++) {
+    const stu = students[j];
+
+    for (let k = 0; k < stu.marks.length; k++) {
+      if (stu.marks[k].subject === subjects[i]) {
+        total += stu.marks[k].score;
+      }
+    }
+  }
+
+  const avg = total / students.length;
+  console.log("Average " + subjects[i] + ": " + avg);
+}
