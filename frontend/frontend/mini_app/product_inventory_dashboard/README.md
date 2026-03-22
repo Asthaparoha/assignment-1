@@ -177,7 +177,7 @@ Shows products with stock less than 5.
 ### ➕ Add Product
 Form used to add a new product.
 
-![Add Product](./screenshots/NewProduct.png)
+![Add Product](./screenshots/NewProductAdded.png)
 
 ---
 
