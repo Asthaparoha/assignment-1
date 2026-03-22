@@ -16,6 +16,13 @@ resolve(products);
 }, 1500);
 });
 }
+const categoryCount = {};
+
+products.forEach(p => {
+  categoryCount[p.category] = (categoryCount[p.category] || 0) + 1;
+});
+
+console.log(categoryCount);
 
 // ================== DOM REFERENCES ==================
 const productList = document.getElementById("productList");
