@@ -149,7 +149,7 @@ The application follows a clear layout:
 ### 🏠 Dashboard View
 Displays all products along with analytics.
 
-![Dashboard](./screenshots/Dashboard Main.png)
+![Dashboard](./screenshots/DashboardMain.png)
 
 ---
 
