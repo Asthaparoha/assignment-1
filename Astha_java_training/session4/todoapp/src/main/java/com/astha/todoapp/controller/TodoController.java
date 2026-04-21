@@ -28,10 +28,10 @@ public class TodoController {
 
     // 1. Create TODO
     @PostMapping
-    public void create(@Valid @RequestBody TodoDTO dto) {
-        service.createTodo(dto);
-    }
-
+public TodoDTO create(@Valid @RequestBody TodoDTO dto) {
+    service.createTodo(dto);
+    return dto;
+}
     // 2. Get all TODOs
     @GetMapping
     public List<TodoDTO> getAll() {
@@ -46,13 +46,15 @@ public class TodoController {
 
     // 4. Update TODO
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody TodoDTO dto) {
-        service.updateTodo(id, dto);
-    }
+public TodoDTO update(@PathVariable Long id, @RequestBody TodoDTO dto) {
+    service.updateTodo(id, dto);
+    return dto;
+}
 
     // 5. Delete TODO
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        service.deleteTodo(id);
-    }
+public String delete(@PathVariable Long id) {
+    service.deleteTodo(id);
+    return "Todo deleted successfully";
+}
 }

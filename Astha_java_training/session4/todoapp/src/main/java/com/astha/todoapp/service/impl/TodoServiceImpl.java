@@ -66,8 +66,19 @@ public class TodoServiceImpl implements TodoService {
         }
 
         if (dto.getStatus() != null) {
-            todo.setStatus(dto.getStatus());
-        }
+
+    TodoStatus currentStatus = todo.getStatus();
+    TodoStatus newStatus = dto.getStatus();
+
+    // allowed transitions
+    if ((currentStatus == TodoStatus.PENDING && newStatus == TodoStatus.COMPLETED) ||
+        (currentStatus == TodoStatus.COMPLETED && newStatus == TodoStatus.PENDING)) {
+
+        todo.setStatus(newStatus);
+    } else {
+        throw new RuntimeException("Invalid status transition");
+    }
+}
 
         repository.save(todo);
     }

@@ -22,4 +22,10 @@ public class GlobalExceptionHandler {
         error.put("message", "Something went wrong");
         return error;
     }
+    @ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
+public Map<String, String> handleValidation(Exception ex) {
+    Map<String, String> error = new HashMap<>();
+    error.put("message", "Validation failed: title must be at least 3 characters");
+    return error;
+}
 }
