@@ -1,29 +1,43 @@
 package com.capstone.restaurantorders.controller;
-import jakarta.validation.Valid;
+
+import com.capstone.restaurantorders.dto.LoginResponseDTO;
 import com.capstone.restaurantorders.dto.UserRequestDTO;
 import com.capstone.restaurantorders.dto.UserResponseDTO;
-import com.capstone.restaurantorders.service.UserService;
 import com.capstone.restaurantorders.dto.LoginRequestDTO;
-import com.capstone.restaurantorders.dto.LoginResponseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.capstone.restaurantorders.service.UserService;
+
+
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
-    // POST API
+    // ================= REGISTER =================
     @PostMapping("/register")
     public UserResponseDTO registerUser(@Valid @RequestBody UserRequestDTO request) {
         return userService.registerUser(request);
     }
+
+    // ================= LOGIN =================
     @PostMapping("/login")
-    public LoginResponseDTO loginUser(@RequestBody LoginRequestDTO request) {
+    public LoginResponseDTO login(@RequestBody LoginRequestDTO request) {
         return userService.loginUser(request);
     }
+    @GetMapping("/{id}")
+    public UserResponseDTO getUser(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+    // ================= TEST =================
     @GetMapping("/test")
     public String testAPI() {
         return "Protected API working";

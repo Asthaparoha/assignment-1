@@ -2,41 +2,39 @@ package com.capstone.restaurantorders.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * Entity representing individual items inside an order.
+ */
 @Entity
+@Table(name = "order_item")
 public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private int quantity;
-
-    // MANY items → ONE order
+    // Order reference
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    // MANY items → ONE menu item
+    // Menu item reference
     @ManyToOne
     @JoinColumn(name = "menu_item_id", nullable = false)
     private MenuItem menuItem;
 
-    // Constructor
-    public OrderItem() {}
+    // Quantity of item
+    @Column(nullable = false)
+    private int quantity;
 
-    // Getters & Setters
+    // Price snapshot (important for history)
+    @Column(nullable = false)
+    private double price;
+
+    // ===== GETTERS & SETTERS =====
 
     public Long getId() {
         return id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public Order getOrder() {
@@ -53,5 +51,21 @@ public class OrderItem {
 
     public void setMenuItem(MenuItem menuItem) {
         this.menuItem = menuItem;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

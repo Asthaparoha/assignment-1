@@ -1,6 +1,8 @@
 package com.capstone.restaurantorders.security;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.capstone.restaurantorders.entity.User;
+import com.capstone.restaurantorders.repository.UserRepository;
+import com.capstone.restaurantorders.security.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,13 +10,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
+
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -24,8 +34,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // Skip public APIs
-        if (path.equals("/api/users/login") || path.equals("/api/users/register")) {
+        // 🔓 Public APIs skip
+        if (path.startsWith("/api/users") || path.startsWith("/api/menu-items")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -33,25 +43,32 @@ public class JwtFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            filterChain.doFilter(request, response);
             return;
         }
 
         String token = authHeader.substring(7);
 
         try {
-            // 🔐 Extract email (validate token)
             String email = jwtUtil.extractEmail(token);
 
-            // ✅ Mark user as authenticated
-            UsernamePasswordAuthenticationToken authToken =
-                    new UsernamePasswordAuthenticationToken(email, null, null);
+            // 🔥 fetch user from DB
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
 
+            // 🔥 set role-based authentication
+            UsernamePasswordAuthenticationToken authToken =
+                    new UsernamePasswordAuthenticationToken(
+                            email,
+                            null,
+                            List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
+                    );
+            System.out.println("USER ROLE FROM DB: " + user.getRole());
+            System.out.println("AUTHORITY SET: ROLE_" + user.getRole());
             SecurityContextHolder.getContext().setAuthentication(authToken);
 
         } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return;
+            e.printStackTrace();
         }
 
         filterChain.doFilter(request, response);

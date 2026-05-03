@@ -1,27 +1,36 @@
 package com.capstone.restaurantorders.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "restaurants")
 public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Embedded
-    private Address address;
+    private String description;
 
-    @Column(nullable = false)
-    private String phoneNumber;
+    private String location;
 
-    // Constructors
-    public Restaurant() {}
+    private boolean active = true;
 
-    // Getters & Setters
+    private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    // ===== GETTERS & SETTERS =====
 
     public Long getId() {
         return id;
@@ -35,19 +44,39 @@ public class Restaurant {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getLocation() {
+        return location;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

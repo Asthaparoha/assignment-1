@@ -3,32 +3,24 @@ package com.capstone.restaurantorders.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "menu_item")
 public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private Double price;
 
-    // MANY menu items → ONE category
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id")
     private Category category;
-
-    // MANY menu items → ONE restaurant
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    // Constructor
-    public MenuItem() {}
-
-    // Getters & Setters
+    // ---------- GETTERS & SETTERS ----------
 
     public Long getId() {
         return id;
@@ -65,4 +57,6 @@ public class MenuItem {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
+
 }

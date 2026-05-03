@@ -3,19 +3,22 @@ package com.capstone.restaurantorders.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    // Constructor
-    public Category() {}
+    // relationship with restaurant
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
-    // Getter & Setter
+    // ===== GETTERS & SETTERS =====
+
     public Long getId() {
         return id;
     }
@@ -26,5 +29,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

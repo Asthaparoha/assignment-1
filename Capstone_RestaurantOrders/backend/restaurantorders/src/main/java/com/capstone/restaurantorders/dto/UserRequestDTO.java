@@ -31,7 +31,10 @@ public class UserRequestDTO {
     @NotBlank(message = "Zip code is required")
     private String zipCode;
 
-    // ✅ GETTERS & SETTERS (IMPORTANT)
+    @NotBlank(message = "Role is required")
+    private String role;
+
+    // ===== GETTERS & SETTERS =====
 
     public String getFirstName() {
         return firstName;
@@ -103,5 +106,13 @@ public class UserRequestDTO {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

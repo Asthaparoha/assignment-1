@@ -11,39 +11,31 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String firstName;
-
-    @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String password;
-
     private String phoneNumber;
 
+    // ADDRESS FIELDS
+    private String street;
+    private String city;
+    private String state;
+    private String zipCode;
+
+    // ROLE
     @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false)
+    // WALLET
     private Double walletBalance;
 
-    @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Embedded
-    private Address address;
-
-    // Default Constructor
-    public User() {
-        this.createdAt = LocalDateTime.now();
-        this.walletBalance = 1000.0; // business rule
-    }
-
-    // Getters & Setters
+    // ===== GETTERS & SETTERS =====
 
     public Long getId() {
         return id;
@@ -89,6 +81,38 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public String getRole() {
         return role;
     }
@@ -109,11 +133,9 @@ public class User {
         return createdAt;
     }
 
-    public Address getAddress() {
-        return address;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+
 }
