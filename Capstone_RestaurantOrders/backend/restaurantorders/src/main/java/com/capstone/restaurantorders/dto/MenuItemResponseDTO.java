@@ -13,7 +13,7 @@ public class MenuItemResponseDTO {
         return id;
     }
 
-    public void setId(Long id) {   // 🔥 THIS FIXES ERROR
+    public void setId(Long id) {  
         this.id = id;
     }
 
