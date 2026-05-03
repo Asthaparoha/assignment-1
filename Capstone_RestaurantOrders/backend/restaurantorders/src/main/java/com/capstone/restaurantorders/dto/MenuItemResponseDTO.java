@@ -37,7 +37,7 @@ public class MenuItemResponseDTO {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {   // 🔥 important
+    public void setCategoryId(Long categoryId) { 
         this.categoryId = categoryId;
     }
 }
