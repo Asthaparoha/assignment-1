@@ -34,7 +34,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // 🔓 Public APIs skip
         if (path.startsWith("/api/users") || path.startsWith("/api/menu-items")) {
             filterChain.doFilter(request, response);
             return;
@@ -52,11 +51,11 @@ public class JwtFilter extends OncePerRequestFilter {
         try {
             String email = jwtUtil.extractEmail(token);
 
-            // 🔥 fetch user from DB
+            // fetch user from DB
             User user = userRepository.findByEmail(email)
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
-            // 🔥 set role-based authentication
+            // set role-based authentication
             UsernamePasswordAuthenticationToken authToken =
                     new UsernamePasswordAuthenticationToken(
                             email,
