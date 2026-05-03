@@ -111,6 +111,9 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void removeItem(Long cartItemId) {
+        CartItem item = cartItemRepository.findById(cartItemId)
+                .orElseThrow(() -> new RuntimeException("Item not found"));
 
+        cartItemRepository.delete(item);
     }
 }

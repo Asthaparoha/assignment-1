@@ -47,8 +47,17 @@ email:document.getElementById("email").value,
 password:document.getElementById("password").value
 })
 })
-.then(res => res.json())
+.then(async res => {
+
+  if(!res.ok){
+    alert("Invalid email or password ❌");
+    return;
+  }
+
+  return res.json();
+})
 .then(data=>{
+  if(!data) return;
 
 let role = data.role || "";
 role = role.toUpperCase();

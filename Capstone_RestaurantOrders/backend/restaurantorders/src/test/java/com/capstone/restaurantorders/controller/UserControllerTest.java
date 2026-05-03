@@ -43,7 +43,7 @@ public class UserControllerTest {
     void shouldLoginUserSuccessfully() {
 
         LoginRequestDTO request = new LoginRequestDTO();
-        LoginResponseDTO response = new LoginResponseDTO("jwt-token");
+        LoginResponseDTO response = new LoginResponseDTO();
 
         when(userService.loginUser(any(LoginRequestDTO.class))).thenReturn(response);
 

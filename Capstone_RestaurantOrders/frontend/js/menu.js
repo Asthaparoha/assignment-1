@@ -1,6 +1,15 @@
-window.onload = function () {
-    loadMenu();
-    loadCart();
+window.onload = function(){
+
+  const token = localStorage.getItem("token");
+
+  if(!token){
+    alert("Please login first ❌");
+    window.location.href = "login.html";
+    return;
+  }
+
+  loadMenu();
+  loadCart();
 };
 
 function loadMenu(){

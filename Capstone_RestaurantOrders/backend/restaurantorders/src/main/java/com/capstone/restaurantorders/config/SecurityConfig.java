@@ -33,27 +33,31 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
+                        // 🔓 PUBLIC (NO LOGIN REQUIRED)
                         .requestMatchers(
-                                "/api/auth/**",
                                 "/api/users/register",
                                 "/api/users/login",
-                                "/api/users/**",
-                                "/api/menu-items/**",
-                                ("/api/restaurants/**")
+                                "/api/restaurants/**",
+                                "/api/categories/**",
+                                "/api/menu-items/category/**"
                         ).permitAll()
 
-                        .requestMatchers("/api/restaurants/**")
-                        .hasAnyAuthority("ROLE_USER", "ROLE_RESTAURANT_OWNER")
+                        // 👤 USER (CUSTOMER)
+                        .requestMatchers(
+                                "/api/cart/**",
+                                "/api/orders/place",
+                                "/api/orders/user/**",
+                                "/api/orders/cancel/**"
+                        ).hasAuthority("ROLE_USER")
 
-                        .requestMatchers("/api/categories/**")
-                        .hasAnyAuthority("ROLE_USER", "ROLE_RESTAURANT_OWNER")
-
-                        .requestMatchers("/api/orders/updateStatus/**")
-                        .hasAuthority("ROLE_RESTAURANT_OWNER")
-
-                        .requestMatchers("/api/cart/**",
-                                "/api/orders/place")
-                        .hasAuthority("ROLE_USER")
+                        // 👨‍🍳 OWNER ONLY
+                        .requestMatchers(
+                                "/api/restaurants/**",
+                                "/api/categories/**",
+                                "/api/menu-items/**",
+                                "/api/orders/all",
+                                "/api/orders/updateStatus/**"
+                        ).hasAuthority("ROLE_RESTAURANT_OWNER")
 
                         .anyRequest().authenticated()
                 )

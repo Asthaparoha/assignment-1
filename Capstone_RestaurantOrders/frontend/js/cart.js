@@ -1,6 +1,15 @@
-window.onload = function () {
-    loadWallet();   
-    loadCart();     
+window.onload = function(){
+
+  const token = localStorage.getItem("token");
+
+  if(!token){
+    alert("Please login first ❌");
+    window.location.href = "login.html";
+    return;
+  }
+
+  loadWallet();
+  loadCart();
 };
 
 //  LOAD CART 
@@ -138,4 +147,8 @@ function loadWallet() {
             "💰 Wallet: ₹" + data.walletBalance;
     })
     .catch(err => console.error(err));
+}
+function logout(){
+  localStorage.clear();
+  window.location.href = "index.html";
 }

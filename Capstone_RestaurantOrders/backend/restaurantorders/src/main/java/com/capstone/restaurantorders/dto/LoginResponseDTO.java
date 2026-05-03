@@ -7,7 +7,7 @@ public class LoginResponseDTO {
     private Long id;
 
     // Default constructor
-    public LoginResponseDTO(String s) {}
+    public LoginResponseDTO() {}
 
     // Getters & Setters
 

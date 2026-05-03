@@ -1,6 +1,15 @@
-window.onload = function () {
-    loadWallet();   
-    loadOrders();   
+window.onload = function(){
+
+  const token = localStorage.getItem("token");
+
+  if(!token){
+    alert("Please login first ❌");
+    window.location.href = "login.html";
+    return;
+  }
+
+  loadWallet();
+  loadOrders();
 };
 
 //  LOAD ORDERS
@@ -115,4 +124,8 @@ function loadWallet() {
             "💰 Wallet: ₹" + data.walletBalance;
     })
     .catch(err => console.error("Wallet error:", err));
+}
+function logout(){
+  localStorage.clear();
+  window.location.href = "index.html";
 }
